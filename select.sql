@@ -38,3 +38,109 @@ VALUES
     SELECT * FROM students;
 
     SELECT * FROM students ORDER BY dob DESC;
+
+    SELECT country FROM students ORDER BY country ASC;
+
+    SELECT DISTINCT country from students;
+
+
+-- data filtering
+
+-- Select students from the USA
+-- Select students with 'A' grade in Physics
+-- Select students with a specific blood group ('A+')
+-- Select students from the USA or from Australia
+-- Select students from the USA or from Australia and the age is 20
+-- Select students with a grade of 'A' or 'B' in Math or Physics:
+
+-- Select students older than 20
+
+    SELECT * from students
+    WHERE (country = 'USA' OR country = 'Australia') and age = 20;
+
+    SELECT * FROM students
+    WHERE country = 'USA' OR country = 'Australia';
+
+    SELECT * from students
+    WHERE country <> 'USA';
+
+SELECT concat(first_name, ' ', last_name) , * FROM students;
+
+SELECT length(first_name) from students;
+
+
+/*
+    @Scalar functions
+ UPPER() Converts a string to uppercase.
+ LOWER() Converts a string to lowercase.
+ CONCAT() Concatenates two or more strings.
+ LENGTH() Returns the number of characters in a string.
+ 
+    @Aggregate functions
+ AVG() Calculate the average of a set of values.
+ MAX() Returns the max value in a set.
+ MIN() Returns the minimum value in a set.
+ SUM Calculates the sum of values in a set.
+ COUNT() Counts the number of rows in a set.
+
+*/
+
+SELECT sum(age) FROM students;
+
+SELECT max(length(first_name)) from students;
+
+
+SELECT * from students
+    WHERE NOT country = 'USA';
+
+       -- SELECT NULL = 1;
+SELECT * FROM students
+    WHERE email IS NOT NULL;
+
+SELECT * FROM students
+
+select COALESCE(email, 'Email not provided') FROM students;
+
+select COALESCE(email, 'Email not provided') as "Email", blood_group, first_name from students;
+
+-- SELECT * FROM students WHERE country = 'USA' or country = 'Canada' or country = 'UK' ;
+
+SELECT * FROM students 
+    WHERE country IN('USA', 'UK', 'Canada') ;
+
+
+SELECT * FROM students 
+    WHERE country NOT IN('USA', 'UK', 'Canada') ;
+
+SELECT * FROM students 
+    WHERE dob BETWEEN '2001-01-15' AND '2002-01-15' ORDER BY dob;
+
+SELECT * from students
+    WHERE first_name LIKE '___a';
+
+SELECT * from students
+    WHERE first_name ILIKE 'A%';
+
+
+SELECT * FROM students 
+    WHERE country IN('USA', 'UK', 'Canada') LIMIT 5;
+
+
+SELECT * from students LIMIT 5 OFFSET 5 * 0;
+
+SELECT * from students LIMIT 5 OFFSET 5 * 1;
+
+SELECT * from students LIMIT 5 OFFSET 5 * 2;
+
+SELECT * from students LIMIT 5 OFFSET 5 * 3;
+
+
+DELETE FROM students
+    WHERE grade = 'C' AND country = 'USA';
+
+
+SELECT * FROM students;
+
+UPDATE students
+    set email = 'default@mail.com', age = 30, course = 'sfdf'
+   id = 45;
